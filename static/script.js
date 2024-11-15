@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  const baseURL = isLocal ? 'http://127.0.0.1:5002' : 'http://60.205.59.6:8877';
+
   const selectOption = document.getElementById('selectOption');
   const option1 = document.getElementById('option1');
   const option2 = document.getElementById('option2');
@@ -72,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     try {
-      const response = await fetch('http://60.205.59.6:8877/add_gold', {
+      const response = await fetch(`${baseURL}/add/gold`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams({ gold: gold, uid: uid })
@@ -101,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/add/vip', {
+      const response = await fetch(`${baseURL}/add/vip`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
@@ -132,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/del/vip', {
+      const response = await fetch(`${baseURL}/del/vip`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
@@ -165,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/add/exp', {
+      const response = await fetch(`${baseURL}/add/exp`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
@@ -196,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/anchor/update', {
+      const response = await fetch(`${baseURL}/anchor/update`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
