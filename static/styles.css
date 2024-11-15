@@ -16,7 +16,7 @@ body {
 
 .custom-header {
   display: flex;
-  justify-content: center; /* 水平居中 */
+  justify-content: flex-start; /* 水平居中 */
   align-items: center; /* 垂直居中 */
   padding: 20px;
   background-color: #4CAF50;
@@ -41,6 +41,9 @@ body {
   border: none;
   background-color: #fff;
   margin-left: 20px;
+  display: block;  /* 确保它是块级元素 */
+  margin-left: 600px;  /* 左边距 */
+  margin-right: 50px; /* 右边距 */
 }
 
 /* Container for the input fields */
@@ -59,6 +62,8 @@ body {
   border: 1px solid #d0e6d0;
   padding: 15px;
   margin-bottom: 20px;
+  margin-left: -100px;
+  margin-top: -200px;
   border-radius: 5px;
   width: 100%;
   max-width: 400px;

@@ -65,34 +65,50 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // 充值红豆逻辑
-  confirmBtn1.addEventListener('click', async function () {
-    const uid = uidInput.value.trim();
-    const gold = goldInput.value.trim();
+    confirmBtn1.addEventListener('click', async function () {
+      const uid = uidInput.value.trim();
+      const gold = goldInput.value.trim();
+      const goldType = document.getElementById('goldType').value;  // 获取选择的充值方式
 
-    if (!uid || !gold) {
-      alert('请输入完整信息');
-      return;
-    }
-
-    try {
-      const response = await fetch(`${baseURL}/add/gold`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({ gold: gold, uid: uid })
-      });
-
-      const data = await response.json();
-
-      if (data.code === '200') {
-        alert('成功: ' + data.message);
-      } else {
-        alert('失败: ' + data.message);
+      if (!uid || !gold) {
+        alert('请输入完整信息');
+        return;
       }
-    } catch (error) {
-      alert('请求失败，请检查输入');
-      console.error(error);
-    }
-  });
+
+      let apiUrl = '';
+
+      // 根据选择的充值方式，决定调用的接口
+      if (goldType === 'noble1') {
+        apiUrl = `${baseURL}/add/gold`;  // 普通红豆充值接口
+      } else if (goldType === 'noble2') {
+        apiUrl = `${baseURL}/add/noble/gold`;  // 贵族红豆充值接口
+      } else if (goldType === 'noble3') {
+        apiUrl = `${baseURL}/add/resource/gold`;  // 贵族红豆充值接口
+      }else {
+        alert('请选择充值方式');
+        return;
+      }
+
+      try {
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({ gold: gold, uid: uid })
+        });
+
+        const data = await response.json();
+
+        if (data.code === '200') {
+          alert('成功: ' + data.message);
+        } else {
+          alert('失败: ' + data.message);
+        }
+      } catch (error) {
+        alert('请求失败，请检查输入');
+        console.error(error);
+      }
+    });
+
 
   // 开通会员逻辑
   confirmBtn2.addEventListener('click', async function () {

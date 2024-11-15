@@ -18,7 +18,7 @@ register_routes(app)
 
 # 启动应用
 if __name__ == '__main__':
-    is_debug = False  # 可以根据需求修改
+    is_debug = True  # 可以根据需求修改
     if is_debug:
         app.run(host='127.0.0.1', port=5002, debug=True)
     else:
